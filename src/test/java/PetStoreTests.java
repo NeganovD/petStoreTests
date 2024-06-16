@@ -1,15 +1,15 @@
-package org.example;
-
+import org.example.PetStoreClient;
 import org.junit.jupiter.api.*;
 
 import java.util.Map;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PetStoreTests {
 
-    int  expectedOrderId = 100;
+    int expectedOrderId = 100;
 
     @Test
     @Tag("Positive")
@@ -50,7 +50,7 @@ public class PetStoreTests {
     @Test
     @Tag("Positive")
     @Order(4)
-    public void getOrderByIdPositiveTest(){
+    public void getOrderByIdPositiveTest() {
         PetStoreClient.getOrderById(expectedOrderId) //При условии выполнения метода postOrder с id = 1
                 .then()
                 .statusCode(200)
@@ -65,7 +65,7 @@ public class PetStoreTests {
     @Test
     @Order(5)
     @Tag("Negative")
-    public void getOrderByIdNegativeTestNotFound(){
+    public void getOrderByIdNegativeTestNotFound() {
         PetStoreClient.getOrderById(1111)
                 .then()
                 .statusCode(404);
@@ -74,7 +74,7 @@ public class PetStoreTests {
     @Test
     @Order(6)
     @Tag("Negative")
-    public void getOrderByIdNegativeTestInvalidId(){
+    public void getOrderByIdNegativeTestInvalidId() {
         PetStoreClient.getOrderById("invalid")
                 .then()
                 .statusCode(404);
@@ -84,22 +84,23 @@ public class PetStoreTests {
     @Test
     @Order(7)
     @Tag("Positive")
-    public void deleteOrderByIdPositive(){
+    public void deleteOrderByIdPositive() {
         PetStoreClient.deleteOrderByID(expectedOrderId)  //При условии выполнения метода postOrder с id = 1
                 .then()
                 .statusCode(200)
-                .body("code",equalTo(200))
+                .body("code", equalTo(200))
                 .body("type", notNullValue())
                 .body("message", notNullValue());
     }
+
     @Test
     @Order(8)
     @Tag("Positive")
-    public void deleteOrderByIdNotFoundNegative(){
+    public void deleteOrderByIdNotFoundNegative() {
         PetStoreClient.deleteOrderByID(expectedOrderId + Math.random())
                 .then()
                 .statusCode(404)
-                .body("code",equalTo(404))
+                .body("code", equalTo(404))
                 .body("type", notNullValue())
                 .body("message", notNullValue());
     }
