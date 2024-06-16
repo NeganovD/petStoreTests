@@ -1,3 +1,6 @@
+//для запуска из консоли позитивных или негативных сценариев
+//mvn test -Dgroups=Positive
+//mvn test -Dgroups=Negative
 import org.example.PetStoreClient;
 import org.junit.jupiter.api.*;
 
