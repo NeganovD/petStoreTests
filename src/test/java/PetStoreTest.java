@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class PetStoreTests {
+public class PetStoreTest {
 
     int expectedOrderId = 100;
 
@@ -95,7 +95,7 @@ public class PetStoreTests {
 
     @Test
     @Order(8)
-    @Tag("Positive")
+    @Tag("Negative")
     public void deleteOrderByIdNotFoundNegative() {
         PetStoreClient.deleteOrderByID(expectedOrderId + Math.random())
                 .then()
